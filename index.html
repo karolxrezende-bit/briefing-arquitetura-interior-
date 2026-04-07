@@ -92,15 +92,6 @@
       padding: 12px;
     }
 
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.55);
-      margin-bottom: 8px;
-      font-weight: 800;
-    }
-
     .hero h1 {
       margin: 0 0 8px;
       font-size: 38px;
@@ -146,7 +137,7 @@
       top: 10px;
       z-index: 1000;
       display: grid;
-      grid-template-columns: 1fr auto auto;
+      grid-template-columns: 1fr auto;
       gap: 12px;
       margin-bottom: 24px;
       backdrop-filter: blur(10px);
@@ -379,6 +370,7 @@
     }
 
     .print-cover-inner {
+      position: relative;
       min-height: 257mm;
       display: flex;
       flex-direction: column;
@@ -388,58 +380,46 @@
       padding: 20mm 14mm;
       background: #ffffff;
       color: #111111;
-      border: 1px solid #d9d9d9;
-      border-radius: 16px;
     }
 
     .print-cover-logo {
-      width: 110px;
-      height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-      border: 1px solid #d9d9d9;
-      border-radius: 18px;
-      background: #ffffff;
-      overflow: hidden;
+      background: transparent;
+      border: none;
+    }
+
+    .print-cover-logo.large {
+      width: 260px;
+      height: auto;
+      margin-bottom: 30px;
     }
 
     .print-cover-logo img {
       width: 100%;
-      height: 100%;
+      height: auto;
       object-fit: contain;
-      padding: 12px;
-    }
-
-    .print-cover-eyebrow {
-      font-size: 12px;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: #666666;
-      margin-bottom: 12px;
-      font-weight: 700;
+      padding: 0;
     }
 
     .print-cover h1 {
-      margin: 0 0 10px;
-      font-size: 30px;
+      margin: 0 0 14px;
+      font-size: 34px;
       line-height: 1.1;
+      font-weight: 600;
       color: #111111;
     }
 
     .print-cover h2 {
       margin: 0;
-      font-size: 22px;
-      font-weight: 600;
-      color: #333333;
+      font-size: 20px;
+      font-weight: 500;
+      color: #444444;
     }
 
     .print-cover-line {
       width: 120px;
       height: 2px;
       background: #d9d9d9;
-      margin: 22px 0 26px;
+      margin: 20px 0 24px;
     }
 
     .print-cover-meta {
@@ -448,15 +428,6 @@
       left: 0;
       right: 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .cover-client {
-      font-size: 18px;
-      font-weight: 600;
-      color: #111111;
     }
 
     .cover-date {
@@ -477,168 +448,7 @@
       .hero-panel { width: 100%; }
     }
 
-    body.pdf-mode {
-      background: #ffffff !important;
-      color: #111111 !important;
-    }
-
-    body.pdf-mode .topbar,
-    body.pdf-mode .inline-actions,
-    body.pdf-mode .footer-box,
-    body.pdf-mode .hero-panel {
-      display: none !important;
-    }
-
-    body.pdf-mode .wrap {
-      max-width: 100% !important;
-      padding: 10mm !important;
-      margin: 0 !important;
-    }
-
-    body.pdf-mode .hero,
-    body.pdf-mode .section,
-    body.pdf-mode .subcard,
-    body.pdf-mode .dynamic-item {
-      background: #ffffff !important;
-      color: #111111 !important;
-      border: 1px solid #d9d9d9 !important;
-      border-radius: 12px !important;
-      box-shadow: none !important;
-    }
-
-    body.pdf-mode .hero {
-      padding: 14px !important;
-      margin: 0 0 10px 0 !important;
-    }
-
-    body.pdf-mode .hero::before {
-      display: none !important;
-    }
-
-    body.pdf-mode .brand-logo {
-      width: 52px !important;
-      height: 52px !important;
-      border-radius: 10px !important;
-      border: 1px solid #d9d9d9 !important;
-      background: #ffffff !important;
-    }
-
-    body.pdf-mode .brand-logo img {
-      padding: 6px !important;
-    }
-
-    body.pdf-mode .eyebrow,
-    body.pdf-mode .hero h1,
-    body.pdf-mode .hero p,
-    body.pdf-mode .section h2,
-    body.pdf-mode .section p.desc,
-    body.pdf-mode .subcard h3,
-    body.pdf-mode .item-title,
-    body.pdf-mode label {
-      color: #111111 !important;
-      opacity: 1 !important;
-    }
-
-    body.pdf-mode .hero p,
-    body.pdf-mode .section p.desc {
-      color: #555555 !important;
-    }
-
-    body.pdf-mode .grid {
-      display: block !important;
-    }
-
-    body.pdf-mode .section {
-      margin: 0 0 10px 0 !important;
-      padding: 12px !important;
-      break-inside: avoid !important;
-      page-break-inside: avoid !important;
-    }
-
-    body.pdf-mode .section h2 {
-      font-size: 18px !important;
-      margin: 0 0 6px 0 !important;
-      padding-bottom: 6px !important;
-      border-bottom: 1px solid #e5e5e5 !important;
-    }
-
-    body.pdf-mode .fields {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 8px 12px !important;
-      align-items: start !important;
-    }
-
-    body.pdf-mode .field,
-    body.pdf-mode .field-full {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 4px !important;
-    }
-
-    body.pdf-mode .field-full {
-      grid-column: 1 / -1 !important;
-    }
-
-    body.pdf-mode label {
-      font-size: 11px !important;
-      font-weight: 700 !important;
-    }
-
-    body.pdf-mode input[type="text"],
-    body.pdf-mode input[type="number"],
-    body.pdf-mode input[type="email"],
-    body.pdf-mode input[type="tel"],
-    body.pdf-mode select,
-    body.pdf-mode textarea {
-      width: 100% !important;
-      background: #ffffff !important;
-      color: #111111 !important;
-      border: 1px solid #cfcfcf !important;
-      border-radius: 8px !important;
-      box-shadow: none !important;
-      min-height: 34px !important;
-      padding: 7px 9px !important;
-      margin: 0 !important;
-    }
-
-    body.pdf-mode textarea {
-      min-height: 64px !important;
-    }
-
-    body.pdf-mode input::placeholder,
-    body.pdf-mode textarea::placeholder {
-      color: transparent !important;
-    }
-
-    body.pdf-mode .options {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 6px !important;
-    }
-
-    body.pdf-mode .option {
-      background: #ffffff !important;
-      color: #111111 !important;
-      border: 1px solid #d9d9d9 !important;
-      border-radius: 8px !important;
-      padding: 6px 8px !important;
-      box-shadow: none !important;
-      break-inside: avoid !important;
-      page-break-inside: avoid !important;
-    }
-
     @media print {
-      .print-cover {
-        display: block !important;
-        margin-bottom: 0 !important;
-        page-break-after: always;
-        break-after: page;
-      }
-
-      .hero {
-        display: none !important;
-      }
       @page {
         size: A4;
         margin: 10mm;
@@ -656,9 +466,16 @@
         font-family: Arial, sans-serif !important;
       }
 
+      .print-cover {
+        display: block !important;
+        page-break-after: always;
+        break-after: page;
+      }
+
       .topbar,
       .inline-actions,
       .footer-box,
+      .hero,
       .hero-panel {
         display: none !important;
       }
@@ -669,42 +486,27 @@
         margin: 0 !important;
       }
 
-      .hero {
+      .section,
+      .subcard,
+      .dynamic-item {
         background: #ffffff !important;
         color: #111111 !important;
         border: 1px solid #d9d9d9 !important;
         border-radius: 12px !important;
         box-shadow: none !important;
-        padding: 14px !important;
+      }
+
+      .grid {
+        display: block !important;
+      }
+
+      .section {
         margin: 0 0 10px 0 !important;
+        padding: 12px !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
       }
 
-      .hero::before {
-        display: none !important;
-      }
-
-      .brand-wrap {
-        gap: 12px !important;
-        align-items: center !important;
-      }
-
-      .brand-logo {
-        width: 52px !important;
-        height: 52px !important;
-        border-radius: 10px !important;
-        border: 1px solid #d9d9d9 !important;
-        background: #ffffff !important;
-      }
-
-      .brand-logo img {
-        padding: 6px !important;
-      }
-
-      .eyebrow,
-      .hero h1,
-      .hero p,
       .section h2,
       .section p.desc,
       .subcard h3,
@@ -714,44 +516,15 @@
         opacity: 1 !important;
       }
 
-      .eyebrow {
-        font-size: 10px !important;
-        margin-bottom: 4px !important;
-      }
-
-      .hero h1 {
-        font-size: 28px !important;
-        margin-bottom: 6px !important;
-      }
-
-      .hero p,
-      .section p.desc {
-        color: #555555 !important;
-      }
-
-      .grid {
-        display: block !important;
-      }
-
-      .section,
-      .subcard,
-      .dynamic-item {
-        background: #ffffff !important;
-        color: #111111 !important;
-        border: 1px solid #d9d9d9 !important;
-        border-radius: 12px !important;
-        box-shadow: none !important;
-        margin: 0 0 10px 0 !important;
-        padding: 12px !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-      }
-
       .section h2 {
         font-size: 18px !important;
         margin: 0 0 6px 0 !important;
         padding-bottom: 6px !important;
         border-bottom: 1px solid #e5e5e5 !important;
+      }
+
+      .section p.desc {
+        color: #555555 !important;
       }
 
       .fields {
@@ -766,7 +539,6 @@
         display: flex !important;
         flex-direction: column !important;
         gap: 4px !important;
-        min-height: unset !important;
       }
 
       .field-full {
@@ -817,8 +589,8 @@
         border-radius: 8px !important;
         padding: 6px 8px !important;
         box-shadow: none !important;
-        page-break-inside: avoid !important;
         break-inside: avoid !important;
+        page-break-inside: avoid !important;
       }
 
       .dynamic-list {
@@ -829,17 +601,20 @@
 </head>
 <body>
   <div class="wrap">
+
     <div class="print-cover">
       <div class="print-cover-inner">
-        <div class="print-cover-logo">
+        <div class="print-cover-logo large">
           <img src="logo.png" alt="Logo Arq Karolyne Ximenes" />
         </div>
-        <div class="print-cover-eyebrow">Arquitetura de Interiores</div>
-        <h1>Briefing de Reforma de Apartamento</h1>
-        <h2>Arq Karolyne Ximenes</h2>
+
+        <h1 id="coverMainName">Nome do Cliente</h1>
+
         <div class="print-cover-line"></div>
+
+        <h2>Arq Karolyne Ximenes</h2>
+
         <div class="print-cover-meta">
-          <div class="cover-client" id="coverClientName">Nome do Cliente</div>
           <div class="cover-date" id="coverDate">07 de abril de 2026</div>
         </div>
       </div>
@@ -852,7 +627,6 @@
             <img src="logo.png" alt="Logo Arq Karolyne Ximenes" />
           </div>
           <div class="brand-meta">
-            <div class="eyebrow">Arquitetura de Interiores</div>
             <h1>Arq Karolyne Ximenes</h1>
             <p>Briefing completo para reforma de apartamento. Preencha com calma. Quanto mais detalhado, melhor será o desenvolvimento do projeto.</p>
           </div>
@@ -872,7 +646,6 @@
         </div>
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       </div>
-      
       <button class="tool-btn" type="button" id="printBtn" onclick="handlePrint()">Salvar em PDF</button>
     </div>
 
@@ -1145,12 +918,11 @@
         </div>
       </section>
     </form>
-
-    </div>
+  </div>
 
   <script>
     const form = document.getElementById('briefingForm');
-    const coverClientName = document.getElementById('coverClientName');
+    const coverMainName = document.getElementById('coverMainName');
     const coverDate = document.getElementById('coverDate');
     const fill = document.getElementById('progressFill');
     const text = document.getElementById('progressText');
@@ -1160,7 +932,6 @@
     const addBathroomBtn = document.getElementById('addBathroomBtn');
     const addRoomBtn = document.getElementById('addRoomBtn');
     const addExtraSpaceBtn = document.getElementById('addExtraSpaceBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
     const printBtn = document.getElementById('printBtn');
 
     let bathroomCount = 0;
@@ -1344,9 +1115,12 @@
 
     function updatePrintCover() {
       const clientInput = form.querySelector('input[name="nome_cliente"]');
-      const clientName = clientInput && clientInput.value.trim() ? clientInput.value.trim() : 'Nome do Cliente';
-      coverClientName.textContent = clientName;
-      coverDate.textContent = formatCurrentDatePtBR();
+      const clientName = clientInput && clientInput.value.trim()
+        ? clientInput.value.trim()
+        : 'Nome do Cliente';
+
+      if (coverMainName) coverMainName.textContent = clientName;
+      if (coverDate) coverDate.textContent = formatCurrentDatePtBR();
     }
 
     function handlePrint() {
@@ -1362,34 +1136,9 @@
       }
     }
 
-    function downloadAnswers() {
-      const fields = getFields();
-      const data = {};
-      fields.forEach((field) => {
-        if (!field.name) return;
-        if (field.type === 'checkbox') {
-          if (!data[field.name]) data[field.name] = [];
-          if (field.checked) data[field.name].push(field.value);
-        } else if (field.type === 'radio') {
-          if (field.checked) data[field.name] = field.value;
-        } else {
-          data[field.name] = field.value;
-        }
-      });
-
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'briefing-arq-karolyne-ximenes-respostas.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
     addBathroomBtn.addEventListener('click', addBathroom);
     addRoomBtn.addEventListener('click', addRoom);
     addExtraSpaceBtn.addEventListener('click', addExtraSpace);
-    downloadBtn.addEventListener('click', downloadAnswers);
     printBtn.addEventListener('click', handlePrint);
 
     document.addEventListener('click', (event) => {
@@ -1402,6 +1151,7 @@
       updateProgress();
       updatePrintCover();
     });
+
     form.addEventListener('change', () => {
       updateProgress();
       updatePrintCover();
@@ -1412,14 +1162,6 @@
     addExtraSpace();
     updateProgress();
     updatePrintCover();
-
-    console.assert(typeof addBathroom === 'function', 'addBathroom should be defined');
-    console.assert(typeof addRoom === 'function', 'addRoom should be defined');
-    console.assert(typeof addExtraSpace === 'function', 'addExtraSpace should be defined');
-    console.assert(document.querySelectorAll('#bathroomList .dynamic-item').length === 1, 'One bathroom item should render initially');
-    console.assert(document.querySelectorAll('#roomList .dynamic-item').length === 1, 'One room item should render initially');
-    console.assert(document.querySelectorAll('#extraSpaceList .dynamic-item').length === 1, 'One extra space item should render initially');
-    console.assert(typeof window.print === 'function', 'window.print should be available');
   </script>
 </body>
 </html>
