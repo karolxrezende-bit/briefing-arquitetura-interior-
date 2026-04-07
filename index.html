@@ -374,6 +374,96 @@
     .footer-box p { color: rgba(255,255,255,.72); line-height: 1.7; }
     .small { color: rgba(255,255,255,.56); font-size: 13px; }
 
+    .print-cover {
+      display: none;
+    }
+
+    .print-cover-inner {
+      min-height: 257mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20mm 14mm;
+      background: #ffffff;
+      color: #111111;
+      border: 1px solid #d9d9d9;
+      border-radius: 16px;
+    }
+
+    .print-cover-logo {
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border: 1px solid #d9d9d9;
+      border-radius: 18px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .print-cover-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 12px;
+    }
+
+    .print-cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: #666666;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .print-cover h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.1;
+      color: #111111;
+    }
+
+    .print-cover h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .print-cover-line {
+      width: 120px;
+      height: 2px;
+      background: #d9d9d9;
+      margin: 22px 0 26px;
+    }
+
+    .print-cover-meta {
+      position: absolute;
+      bottom: 30mm;
+      left: 0;
+      right: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cover-client {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111111;
+    }
+
+    .cover-date {
+      font-size: 13px;
+      color: #777777;
+    }
+
     @media (max-width: 860px) {
       .topbar,
       .fields,
@@ -387,7 +477,168 @@
       .hero-panel { width: 100%; }
     }
 
+    body.pdf-mode {
+      background: #ffffff !important;
+      color: #111111 !important;
+    }
+
+    body.pdf-mode .topbar,
+    body.pdf-mode .inline-actions,
+    body.pdf-mode .footer-box,
+    body.pdf-mode .hero-panel {
+      display: none !important;
+    }
+
+    body.pdf-mode .wrap {
+      max-width: 100% !important;
+      padding: 10mm !important;
+      margin: 0 !important;
+    }
+
+    body.pdf-mode .hero,
+    body.pdf-mode .section,
+    body.pdf-mode .subcard,
+    body.pdf-mode .dynamic-item {
+      background: #ffffff !important;
+      color: #111111 !important;
+      border: 1px solid #d9d9d9 !important;
+      border-radius: 12px !important;
+      box-shadow: none !important;
+    }
+
+    body.pdf-mode .hero {
+      padding: 14px !important;
+      margin: 0 0 10px 0 !important;
+    }
+
+    body.pdf-mode .hero::before {
+      display: none !important;
+    }
+
+    body.pdf-mode .brand-logo {
+      width: 52px !important;
+      height: 52px !important;
+      border-radius: 10px !important;
+      border: 1px solid #d9d9d9 !important;
+      background: #ffffff !important;
+    }
+
+    body.pdf-mode .brand-logo img {
+      padding: 6px !important;
+    }
+
+    body.pdf-mode .eyebrow,
+    body.pdf-mode .hero h1,
+    body.pdf-mode .hero p,
+    body.pdf-mode .section h2,
+    body.pdf-mode .section p.desc,
+    body.pdf-mode .subcard h3,
+    body.pdf-mode .item-title,
+    body.pdf-mode label {
+      color: #111111 !important;
+      opacity: 1 !important;
+    }
+
+    body.pdf-mode .hero p,
+    body.pdf-mode .section p.desc {
+      color: #555555 !important;
+    }
+
+    body.pdf-mode .grid {
+      display: block !important;
+    }
+
+    body.pdf-mode .section {
+      margin: 0 0 10px 0 !important;
+      padding: 12px !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
+    body.pdf-mode .section h2 {
+      font-size: 18px !important;
+      margin: 0 0 6px 0 !important;
+      padding-bottom: 6px !important;
+      border-bottom: 1px solid #e5e5e5 !important;
+    }
+
+    body.pdf-mode .fields {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px 12px !important;
+      align-items: start !important;
+    }
+
+    body.pdf-mode .field,
+    body.pdf-mode .field-full {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+    }
+
+    body.pdf-mode .field-full {
+      grid-column: 1 / -1 !important;
+    }
+
+    body.pdf-mode label {
+      font-size: 11px !important;
+      font-weight: 700 !important;
+    }
+
+    body.pdf-mode input[type="text"],
+    body.pdf-mode input[type="number"],
+    body.pdf-mode input[type="email"],
+    body.pdf-mode input[type="tel"],
+    body.pdf-mode select,
+    body.pdf-mode textarea {
+      width: 100% !important;
+      background: #ffffff !important;
+      color: #111111 !important;
+      border: 1px solid #cfcfcf !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      min-height: 34px !important;
+      padding: 7px 9px !important;
+      margin: 0 !important;
+    }
+
+    body.pdf-mode textarea {
+      min-height: 64px !important;
+    }
+
+    body.pdf-mode input::placeholder,
+    body.pdf-mode textarea::placeholder {
+      color: transparent !important;
+    }
+
+    body.pdf-mode .options {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 6px !important;
+    }
+
+    body.pdf-mode .option {
+      background: #ffffff !important;
+      color: #111111 !important;
+      border: 1px solid #d9d9d9 !important;
+      border-radius: 8px !important;
+      padding: 6px 8px !important;
+      box-shadow: none !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+
     @media print {
+      .print-cover {
+        display: block !important;
+        margin-bottom: 0 !important;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .hero {
+        display: none !important;
+      }
       @page {
         size: A4;
         margin: 10mm;
@@ -578,6 +829,22 @@
 </head>
 <body>
   <div class="wrap">
+    <div class="print-cover">
+      <div class="print-cover-inner">
+        <div class="print-cover-logo">
+          <img src="logo.png" alt="Logo Arq Karolyne Ximenes" />
+        </div>
+        <div class="print-cover-eyebrow">Arquitetura de Interiores</div>
+        <h1>Briefing de Reforma de Apartamento</h1>
+        <h2>Arq Karolyne Ximenes</h2>
+        <div class="print-cover-line"></div>
+        <div class="print-cover-meta">
+          <div class="cover-client" id="coverClientName">Nome do Cliente</div>
+          <div class="cover-date" id="coverDate">07 de abril de 2026</div>
+        </div>
+      </div>
+    </div>
+
     <div class="hero">
       <div class="hero-header">
         <div class="brand-wrap">
@@ -883,6 +1150,8 @@
 
   <script>
     const form = document.getElementById('briefingForm');
+    const coverClientName = document.getElementById('coverClientName');
+    const coverDate = document.getElementById('coverDate');
     const fill = document.getElementById('progressFill');
     const text = document.getElementById('progressText');
     const bathroomList = document.getElementById('bathroomList');
@@ -1064,10 +1333,29 @@
       updateProgress();
     }
 
+    function formatCurrentDatePtBR() {
+      const now = new Date();
+      return now.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    function updatePrintCover() {
+      const clientInput = form.querySelector('input[name="nome_cliente"]');
+      const clientName = clientInput && clientInput.value.trim() ? clientInput.value.trim() : 'Nome do Cliente';
+      coverClientName.textContent = clientName;
+      coverDate.textContent = formatCurrentDatePtBR();
+    }
+
     function handlePrint() {
       try {
+        updatePrintCover();
         window.focus();
-        window.print();
+        setTimeout(() => {
+          window.print();
+        }, 80);
       } catch (error) {
         console.error('Erro ao abrir impressão:', error);
         alert('Não foi possível abrir a impressão automaticamente. Use Ctrl+P para salvar em PDF.');
@@ -1110,13 +1398,20 @@
       }
     });
 
-    form.addEventListener('input', updateProgress);
-    form.addEventListener('change', updateProgress);
+    form.addEventListener('input', () => {
+      updateProgress();
+      updatePrintCover();
+    });
+    form.addEventListener('change', () => {
+      updateProgress();
+      updatePrintCover();
+    });
 
     addBathroom();
     addRoom();
     addExtraSpace();
     updateProgress();
+    updatePrintCover();
 
     console.assert(typeof addBathroom === 'function', 'addBathroom should be defined');
     console.assert(typeof addRoom === 'function', 'addRoom should be defined');
