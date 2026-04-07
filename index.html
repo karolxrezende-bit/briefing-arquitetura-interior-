@@ -428,7 +428,7 @@
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       </div>
       
-      <button class="tool-btn" type="button" id="printBtn">Salvar em PDF</button>
+      <button class="tool-btn" type="button" id="printBtn" onclick="handlePrint()">Salvar em PDF</button>
     </div>
 
     <form id="briefingForm" class="grid">
@@ -886,6 +886,16 @@
       updateProgress();
     }
 
+    function handlePrint() {
+      try {
+        window.focus();
+        window.print();
+      } catch (error) {
+        console.error('Erro ao abrir impressão:', error);
+        alert('Não foi possível abrir a impressão automaticamente. Use Ctrl+P para salvar em PDF.');
+      }
+    }
+
     function downloadAnswers() {
       const fields = getFields();
       const data = {};
@@ -914,17 +924,7 @@
     addRoomBtn.addEventListener('click', addRoom);
     addExtraSpaceBtn.addEventListener('click', addExtraSpace);
     downloadBtn.addEventListener('click', downloadAnswers);
-    printBtn.addEventListener('click', () => {
-      try {
-        window.focus();
-        setTimeout(() => {
-          window.print();
-        }, 50);
-      } catch (error) {
-        console.error('Erro ao abrir impressão:', error);
-        alert('Não foi possível abrir a impressão automaticamente. Use Ctrl+P para salvar em PDF.');
-      }
-    });
+    printBtn.addEventListener('click', handlePrint);
 
     document.addEventListener('click', (event) => {
       if (event.target.matches('[data-remove-item]')) {
