@@ -914,7 +914,17 @@
     addRoomBtn.addEventListener('click', addRoom);
     addExtraSpaceBtn.addEventListener('click', addExtraSpace);
     downloadBtn.addEventListener('click', downloadAnswers);
-    printBtn.addEventListener('click', () => window.print());
+    printBtn.addEventListener('click', () => {
+      try {
+        window.focus();
+        setTimeout(() => {
+          window.print();
+        }, 50);
+      } catch (error) {
+        console.error('Erro ao abrir impressão:', error);
+        alert('Não foi possível abrir a impressão automaticamente. Use Ctrl+P para salvar em PDF.');
+      }
+    });
 
     document.addEventListener('click', (event) => {
       if (event.target.matches('[data-remove-item]')) {
@@ -936,6 +946,7 @@
     console.assert(document.querySelectorAll('#bathroomList .dynamic-item').length === 1, 'One bathroom item should render initially');
     console.assert(document.querySelectorAll('#roomList .dynamic-item').length === 1, 'One room item should render initially');
     console.assert(document.querySelectorAll('#extraSpaceList .dynamic-item').length === 1, 'One extra space item should render initially');
+    console.assert(typeof window.print === 'function', 'window.print should be available');
   </script>
 </body>
 </html>
