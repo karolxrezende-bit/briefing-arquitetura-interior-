@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Briefing | Arq Karolyne Ximenes</title>
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --bg-2: #18181b;
+      --card: rgba(28, 28, 30, 0.9);
+      --card-strong: rgba(36, 36, 38, 0.96);
+      --text: #f5f5f5;
+      --muted: #a1a1a6;
+      --line: rgba(255, 255, 255, 0.08);
+      --accent: #8a8a8f;
+      --accent-2: #c7c7cc;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: radial-gradient(circle at top left, rgba(255,255,255,.04), transparent 28%), linear-gradient(180deg, #0b0b0c 0%, #121214 50%, #18181b 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 18px 80px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #000000 0%, #111113 38%, #1c1c1e 72%, #2c2c2e 100%);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255,255,255,.08), transparent 22%), linear-gradient(120deg, transparent 0%, rgba(255,255,255,.03) 35%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+      flex: 1 1 620px;
+    }
+
+    .brand-logo {
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 12px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 38px;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,.74);
+      line-height: 1.72;
+      max-width: 820px;
+      font-size: 15px;
+    }
+
+    .hero-panel {
+      min-width: 220px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-panel-title {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .hero-panel strong {
+      font-size: 15px;
+      font-weight: 800;
+      color: #f5f5f5;
+      display: block;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 10px;
+      z-index: 1000;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+      padding: 10px;
+      border-radius: 20px;
+    }
+
+    .progress-card,
+    .tool-btn,
+    .small-btn {
+      background: var(--card-strong);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .progress-card { padding: 16px 18px; }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #232326;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(135deg, #3a3a3c, #8a8a8f);
+      transition: width .25s ease;
+    }
+
+    .tool-btn,
+    .small-btn {
+      padding: 0 18px;
+      min-height: 58px;
+      font-size: 14px;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, #2c2c2e, #3a3a3c);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .small-btn {
+      min-height: auto;
+      padding: 12px 16px;
+      font-size: 13px;
+      border-radius: 12px;
+      box-shadow: none;
+    }
+
+    .tool-btn:hover,
+    .small-btn:hover { transform: translateY(-1px); }
+
+    .small-btn.secondary {
+      background: rgba(255,255,255,.04);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .section {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin: 0 0 6px;
+      font-size: 22px;
+    }
+
+    .section p.desc {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 820px;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field,
+    .field-full {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ededee;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.08);
+      background: #1f1f21;
+      color: #f5f5f5;
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 14px;
+      outline: none;
+      transition: .2s ease;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: #8e8e93; }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #8a8a8f;
+      background: #262628;
+      box-shadow: 0 0 0 4px rgba(138,138,143,.12);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .option input { accent-color: #8a8a8f; }
+
+    .subcard {
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .subcard h3 {
+      margin: 0 0 12px;
+      font-size: 17px;
+      color: #e8e8ea;
+    }
+
+    .dynamic-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .dynamic-item {
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .item-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #f1f1f2;
+    }
+
+    .inline-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .footer-box {
+      margin-top: 28px;
+      background: linear-gradient(135deg, #000000 0%, #1c1c1e 60%, #2c2c2e 100%);
+      border: 1px solid var(--line);
+      color: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-box p { color: rgba(255,255,255,.72); line-height: 1.7; }
+    .small { color: rgba(255,255,255,.56); font-size: 13px; }
+
+    @media (max-width: 860px) {
+      .topbar,
+      .fields,
+      .options { grid-template-columns: 1fr; }
+
+      .hero { padding: 24px; }
+      .hero-header,
+      .brand-wrap { align-items: flex-start; }
+      .brand-logo { width: 72px; height: 72px; border-radius: 18px; }
+      .hero h1 { font-size: 30px; }
+      .hero-panel { width: 100%; }
+    }
+
+    @media print {
+      body { background: white; color: black; }
+      .topbar,
+      .inline-actions { display: none !important; }
+      .section,
+      .hero,
+      .footer-box,
+      .progress-card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-header">
+        <div class="brand-wrap">
+          <div class="brand-logo">
+            <img src="https://via.placeholder.com/150x150.png?text=LOGO" alt="Logo Arq Karolyne Ximenes" />
+          </div>
+          <div class="brand-meta">
+            <div class="eyebrow">Arquitetura de Interiores</div>
+            <h1>Arq Karolyne Ximenes</h1>
+            <p>Briefing completo para reforma de apartamento. Preencha com calma. Quanto mais detalhado, melhor será o desenvolvimento do projeto.</p>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="hero-panel-title">Formato</div>
+          <strong>Preenchimento online + exportação em PDF</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="progress-card">
+        <div class="progress-top">
+          <strong>Progresso do briefing</strong>
+          <span id="progressText">0% preenchido</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <button class="tool-btn" type="button" id="downloadBtn">Baixar respostas</button>
+      <button class="tool-btn" type="button" id="printBtn">Salvar em PDF</button>
+    </div>
+
+    <form id="briefingForm" class="grid">
+      <section class="section">
+        <h2>1. Informações gerais</h2>
+        <p class="desc">Contexto do imóvel e de quem vai viver nele. Isso influencia todas as decisões do projeto.</p>
+        <div class="fields">
+          <div class="field"><label>Nome do cliente</label><input type="text" name="nome_cliente"></div>
+          <div class="field"><label>Telefone</label><input type="tel" name="telefone"></div>
+          <div class="field"><label>E-mail</label><input type="email" name="email"></div>
+          <div class="field"><label>Endereço / condomínio</label><input type="text" name="endereco"></div>
+          <div class="field"><label>Metragem aproximada do apartamento</label><input type="text" name="metragem"></div>
+          <div class="field"><label>Imóvel</label><select name="tipo_imovel"><option value="">Selecione</option><option>Próprio</option><option>Alugado</option><option>Em compra</option></select></div>
+          <div class="field"><label>Quantas pessoas moram no apartamento?</label><input type="number" name="moradores"></div>
+          <div class="field"><label>Prazo ideal da reforma</label><input type="text" name="prazo"></div>
+          <div class="field-full"><label>Quem mora no imóvel? Descreva adultos, crianças, idosos e rotina da casa</label><textarea name="perfil_moradores"></textarea></div>
+          <div class="field-full"><label>Tem pets? Quais e de que porte?</label><textarea name="pets"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>2. Objetivo da reforma</h2>
+        <p class="desc">Entender o que realmente precisa mudar evita retrabalho e ajuda a definir prioridades.</p>
+        <div class="fields">
+          <div class="field-full">
+            <label>Qual é o principal objetivo da reforma?</label>
+            <div class="options">
+              <label class="option"><input type="checkbox" name="objetivo" value="Atualizar estética">Atualizar estética</label>
+              <label class="option"><input type="checkbox" name="objetivo" value="Melhorar funcionalidade">Melhorar funcionalidade</label>
+              <label class="option"><input type="checkbox" name="objetivo" value="Aproveitar melhor espaços">Aproveitar melhor espaços</label>
+              <label class="option"><input type="checkbox" name="objetivo" value="Valorizar imóvel">Valorizar imóvel</label>
+              <label class="option"><input type="checkbox" name="objetivo" value="Modernizar acabamentos">Modernizar acabamentos</label>
+              <label class="option"><input type="checkbox" name="objetivo" value="Reforma completa">Reforma completa</label>
+            </div>
+          </div>
+          <div class="field-full"><label>O que mais incomoda hoje no apartamento?</label><textarea name="incomodos"></textarea></div>
+          <div class="field-full"><label>O que você não quer mudar de jeito nenhum?</label><textarea name="nao_mudar"></textarea></div>
+          <div class="field-full"><label>Quais ambientes terão intervenção?</label><textarea name="ambientes_intervencao" placeholder="Ex.: sala, cozinha, suíte, lavabo, varanda, área de serviço..."></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>3. Estilo, imagem e referências</h2>
+        <p class="desc">Ajuda a traduzir gosto pessoal em linguagem visual de projeto.</p>
+        <div class="fields">
+          <div class="field-full">
+            <label>Estilos com que mais se identifica</label>
+            <div class="options">
+              <label class="option"><input type="checkbox" name="estilo" value="Moderno">Moderno</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Contemporâneo">Contemporâneo</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Minimalista">Minimalista</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Industrial">Industrial</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Clássico">Clássico</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Escandinavo">Escandinavo</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Natural">Natural</label>
+              <label class="option"><input type="checkbox" name="estilo" value="Luxo sofisticado">Luxo sofisticado</label>
+            </div>
+          </div>
+          <div class="field"><label>Paleta desejada</label><input type="text" name="paleta"></div>
+          <div class="field"><label>Atmosfera desejada</label><input type="text" name="atmosfera"></div>
+          <div class="field-full"><label>Arquitetos, marcas, hotéis ou referências que gosta</label><textarea name="referencias"></textarea></div>
+          <div class="field-full"><label>Links de Pinterest, Instagram ou outras inspirações</label><textarea name="links_referencia"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>4. Mudanças estruturais e acabamentos</h2>
+        <p class="desc">Tudo que pode impactar obra, custo, cronograma e layout.</p>
+        <div class="fields">
+          <div class="field-full">
+            <label>O que deseja alterar?</label>
+            <div class="options">
+              <label class="option"><input type="checkbox" name="alteracoes" value="Iluminação">Mudança de iluminação</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Pintura">Mudança de pintura</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Piso">Mudança de piso</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Revestimento banheiro">Revestimento em banheiros</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Revestimento cozinha">Revestimento em cozinha</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Forro de gesso">Forro de gesso</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Portas">Troca de portas</label>
+              <label class="option"><input type="checkbox" name="alteracoes" value="Esquadrias">Troca de esquadrias</label>
+            </div>
+          </div>
+          <div class="field"><label>Quer quebrar alguma parede?</label><select name="quebra_parede"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Talvez, avaliar</option></select></div>
+          <div class="field"><label>Quer integrar ambientes?</label><select name="integracao"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>A avaliar</option></select></div>
+          <div class="field-full"><label>Descreva as mudanças mais importantes de piso, pintura, gesso e revestimentos</label><textarea name="mudancas_principais"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>5. Iluminação</h2>
+        <p class="desc">Iluminação muda sensação, uso e valorização do ambiente.</p>
+        <div class="fields">
+          <div class="field-full">
+            <label>Tipos de iluminação desejados</label>
+            <div class="options">
+              <label class="option"><input type="checkbox" name="iluminacao_tipo" value="Iluminação indireta">Iluminação indireta</label>
+              <label class="option"><input type="checkbox" name="iluminacao_tipo" value="Spots embutidos">Spots embutidos</label>
+              <label class="option"><input type="checkbox" name="iluminacao_tipo" value="Perfis de LED">Perfis de LED</label>
+              <label class="option"><input type="checkbox" name="iluminacao_tipo" value="Pendentes">Pendentes</label>
+              <label class="option"><input type="checkbox" name="iluminacao_tipo" value="Arandelas">Arandelas</label>
+              <label class="option"><input type="checkbox" name="iluminacao_tipo" value="Trilhos">Trilhos</label>
+            </div>
+          </div>
+          <div class="field"><label>Temperatura de cor preferida</label><input type="text" name="temp_cor" placeholder="Ex.: 3000K, 4000K"></div>
+          <div class="field"><label>Deseja automação da iluminação?</label><select name="automacao_iluminacao"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Talvez</option></select></div>
+          <div class="field-full"><label>Quais ambientes precisam de atenção especial de iluminação?</label><textarea name="ambientes_iluminacao"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>6. Cozinha e eletrodomésticos</h2>
+        <p class="desc">Interfere direto em marcenaria, pontos elétricos, hidráulica, ventilação e circulação.</p>
+        <div class="fields">
+          <div class="field"><label>Tipo de cozinha</label><select name="tipo_cozinha"><option value="">Selecione</option><option>Aberta / integrada</option><option>Fechada</option><option>Semi-integrada</option></select></div>
+          <div class="field"><label>Vai mudar o layout da cozinha?</label><select name="layout_cozinha"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>A avaliar</option></select></div>
+          <div class="field-full"><label>Marcas preferidas de eletros</label><textarea name="marcas_eletros" placeholder="Ex.: Brastemp, Electrolux, Samsung, LG, Fischer, Tramontina..."></textarea></div>
+        </div>
+
+        <div class="subcard">
+          <h3>Eletros principais</h3>
+          <div class="fields">
+            <div class="field"><label>Geladeira</label><input type="text" name="geladeira"></div>
+            <div class="field"><label>Fogão / cooktop</label><input type="text" name="cooktop"></div>
+            <div class="field"><label>Forno</label><input type="text" name="forno"></div>
+            <div class="field"><label>Micro-ondas</label><input type="text" name="microondas"></div>
+            <div class="field"><label>Coifa / depurador</label><input type="text" name="coifa"></div>
+            <div class="field"><label>Lava-louças</label><input type="text" name="lava_loucas"></div>
+            <div class="field"><label>Filtro / bebedouro</label><input type="text" name="bebedouro"></div>
+            <div class="field"><label>Adega / cervejeira</label><input type="text" name="adega"></div>
+          </div>
+        </div>
+
+        <div class="subcard">
+          <h3>Eletroportáteis e apoio</h3>
+          <div class="fields">
+            <div class="field"><label>Air fryer</label><input type="text" name="airfryer"></div>
+            <div class="field"><label>Forno elétrico extra</label><input type="text" name="forno_eletrico"></div>
+            <div class="field"><label>Cafeteira</label><input type="text" name="cafeteira"></div>
+            <div class="field"><label>Outros aparelhos importantes</label><input type="text" name="outros_eletros"></div>
+            <div class="field-full"><label>Quer esconder eletros na marcenaria ou deixá-los aparentes?</label><textarea name="eletros_aparentes"></textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>7. Banheiros e lavabos</h2>
+        <p class="desc">Como apartamentos podem ter mais de um banheiro ou lavabo, aqui você pode adicionar quantos espaços quiser e indicar se algum deles não sofrerá intervenção.</p>
+        <div id="bathroomList" class="dynamic-list"></div>
+        <div class="inline-actions">
+          <button class="small-btn" type="button" id="addBathroomBtn">+ Adicionar banheiro ou lavabo</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>8. Sala de estar, jantar e TV</h2>
+        <p class="desc">Foco em convivência, circulação, conforto e composição visual.</p>
+        <div class="fields">
+          <div class="field"><label>Vai ter TV na sala?</label><select name="tv_sala"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+          <div class="field"><label>Marca e tamanho da TV da sala</label><input type="text" name="tv_sala_detalhe"></div>
+          <div class="field"><label>Quer painel ou rack?</label><input type="text" name="painel_sala"></div>
+          <div class="field"><label>Vai integrar sala e jantar?</label><select name="integrar_sala"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Já é integrado</option></select></div>
+          <div class="field-full"><label>Descreva o que é essencial na sala</label><textarea name="essencial_sala" placeholder="Ex.: sofá grande, mesa para 6 lugares, canto de leitura, bar, som..."></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>9. Quartos</h2>
+        <p class="desc">Aqui você pode acrescentar quantos quartos precisar, sem ficar preso a uma quantidade fixa. Serve para suíte, quarto infantil, hóspede, closet ou home office.</p>
+        <div id="roomList" class="dynamic-list"></div>
+        <div class="inline-actions">
+          <button class="small-btn" type="button" id="addRoomBtn">+ Adicionar quarto</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>10. Ambientes extras</h2>
+        <p class="desc">Aqui você pode adicionar outros espaços que também impactam o projeto, como varanda, closet, home office, rouparia, despensa ou qualquer outro ambiente do apartamento.</p>
+        <div id="extraSpaceList" class="dynamic-list"></div>
+        <div class="inline-actions">
+          <button class="small-btn" type="button" id="addExtraSpaceBtn">+ Adicionar ambiente extra</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>11. Área de serviço</h2>
+        <p class="desc">Esse espaço interfere muito na rotina e no aproveitamento do apartamento.</p>
+        <div class="fields">
+          <div class="field"><label>Tipo de máquina de lavar</label><input type="text" name="maquina_lavar"></div>
+          <div class="field"><label>Capacidade desejada</label><input type="text" name="capacidade_maquina"></div>
+          <div class="field"><label>Vai ter tanque?</label><select name="tanque"><option value="">Selecione</option><option>Sim</option><option>Não</option></select></div>
+          <div class="field"><label>Vai ter armários?</label><select name="armarios_servico"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Poucos</option></select></div>
+          <div class="field-full"><label>Outras necessidades da área de serviço</label><textarea name="servico_obs"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>12. Marcenaria, armazenamento e organização</h2>
+        <p class="desc">Essa parte define muito do layout e do custo final.</p>
+        <div class="fields">
+          <div class="field-full">
+            <label>Onde deseja móveis planejados?</label>
+            <div class="options">
+              <label class="option"><input type="checkbox" name="marcenaria" value="Cozinha">Cozinha</label>
+              <label class="option"><input type="checkbox" name="marcenaria" value="Sala">Sala</label>
+              <label class="option"><input type="checkbox" name="marcenaria" value="Quartos">Quartos</label>
+              <label class="option"><input type="checkbox" name="marcenaria" value="Banheiros">Banheiros</label>
+              <label class="option"><input type="checkbox" name="marcenaria" value="Área de serviço">Área de serviço</label>
+              <label class="option"><input type="checkbox" name="marcenaria" value="Varanda">Varanda</label>
+            </div>
+          </div>
+          <div class="field"><label>Acabamento preferido</label><input type="text" name="acabamento_marcenaria"></div>
+          <div class="field"><label>Nível de armazenamento desejado</label><input type="text" name="armazenamento"></div>
+          <div class="field-full"><label>Existe algo que precisa obrigatoriamente caber no projeto?</label><textarea name="itens_obrigatorios"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>13. Tecnologia, climatização e conforto</h2>
+        <p class="desc">Impacta pontos elétricos, infraestrutura e organização dos ambientes.</p>
+        <div class="fields">
+          <div class="field-full">
+            <label>Recursos desejados</label>
+            <div class="options">
+              <label class="option"><input type="checkbox" name="tecnologia" value="Automação">Automação</label>
+              <label class="option"><input type="checkbox" name="tecnologia" value="Som ambiente">Som ambiente</label>
+              <label class="option"><input type="checkbox" name="tecnologia" value="Cortina motorizada">Cortina motorizada</label>
+              <label class="option"><input type="checkbox" name="tecnologia" value="Ar-condicionado">Ar-condicionado</label>
+              <label class="option"><input type="checkbox" name="tecnologia" value="Fechadura digital">Fechadura digital</label>
+              <label class="option"><input type="checkbox" name="tecnologia" value="Rede estruturada">Rede estruturada</label>
+            </div>
+          </div>
+          <div class="field"><label>Marcas preferidas de ar-condicionado</label><input type="text" name="marca_ar"></div>
+          <div class="field"><label>Quantos ambientes terão climatização?</label><input type="number" name="qtd_ar"></div>
+          <div class="field-full"><label>Outras observações de conforto, acústica ou tecnologia</label><textarea name="obs_tecnologia"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>14. Hábitos, rotina e uso real da casa</h2>
+        <p class="desc">É aqui que nasce o projeto inteligente.</p>
+        <div class="fields">
+          <div class="field-full"><label>Você recebe visitas com frequência? Como costuma usar sala, cozinha e jantar?</label><textarea name="visitas"></textarea></div>
+          <div class="field-full"><label>Alguém trabalha em casa? Quantas horas por dia?</label><textarea name="home_office"></textarea></div>
+          <div class="field-full"><label>Você cozinha muito, pouco ou quase nunca?</label><textarea name="cozinha_rotina"></textarea></div>
+          <div class="field-full"><label>Prefere praticidade máxima ou uma casa mais sofisticada?</label><textarea name="praticidade_vs_estetica"></textarea></div>
+          <div class="field-full"><label>Qual ambiente da casa hoje é o menos aproveitado? Por quê?</label><textarea name="menos_aproveitado"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>15. Orçamento e prioridades</h2>
+        <p class="desc">Ajuda a tomar decisões mais inteligentes sem frustrar expectativa.</p>
+        <div class="fields">
+          <div class="field"><label>Faixa de investimento prevista</label><input type="text" name="orcamento"></div>
+          <div class="field"><label>Quer fazer por etapas?</label><select name="etapas"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Talvez</option></select></div>
+          <div class="field-full"><label>Quais ambientes são prioridade absoluta?</label><textarea name="prioridades"></textarea></div>
+          <div class="field-full"><label>Onde vale investir mais? E onde prefere economizar?</label><textarea name="investir_economizar"></textarea></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>16. Perguntas extras</h2>
+        <p class="desc">Essas respostas costumam revelar decisões importantes que o cliente ainda não percebeu sozinho.</p>
+        <div class="fields">
+          <div class="field-full"><label>Se você pudesse transformar um único ambiente e deixar ele perfeito, qual seria?</label><textarea name="ambiente_perfeito"></textarea></div>
+          <div class="field-full"><label>Existe algum item, material, cor ou sensação que você quer muito ver nesse apartamento?</label><textarea name="desejo_especial"></textarea></div>
+          <div class="field-full"><label>Existe algo que você viu em outra casa, hotel ou projeto e pensou: “quero isso no meu apartamento”?</label><textarea name="referencia_real"></textarea></div>
+          <div class="field-full"><label>Observações finais</label><textarea name="obs_finais"></textarea></div>
+        </div>
+      </section>
+    </form>
+
+    <div class="footer-box">
+      <h2 style="margin-top:0">Como usar este briefing</h2>
+      <p>O cliente pode preencher online, revisar com calma e ao final salvar em PDF. Você também pode baixar as respostas em arquivo para organizar seu fluxo interno e transformar esse conteúdo na base do projeto.</p>
+      <div class="small">Sem envio por WhatsApp. Aqui o foco é preenchimento completo, revisão e exportação.</div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('briefingForm');
+    const fill = document.getElementById('progressFill');
+    const text = document.getElementById('progressText');
+    const bathroomList = document.getElementById('bathroomList');
+    const roomList = document.getElementById('roomList');
+    const extraSpaceList = document.getElementById('extraSpaceList');
+    const addBathroomBtn = document.getElementById('addBathroomBtn');
+    const addRoomBtn = document.getElementById('addRoomBtn');
+    const addExtraSpaceBtn = document.getElementById('addExtraSpaceBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const printBtn = document.getElementById('printBtn');
+
+    let bathroomCount = 0;
+    let roomCount = 0;
+    let extraSpaceCount = 0;
+
+    function getFields() {
+      return Array.from(form.querySelectorAll('input, textarea, select'));
+    }
+
+    function updateProgress() {
+      const fields = getFields();
+      const names = [...new Set(fields.map((f) => f.name).filter(Boolean))];
+      let answered = 0;
+
+      names.forEach((name) => {
+        const group = fields.filter((f) => f.name === name);
+        const type = group[0]?.type;
+        if (type === 'checkbox' || type === 'radio') {
+          if (group.some((f) => f.checked)) answered += 1;
+        } else if (group.some((f) => String(f.value).trim() !== '')) {
+          answered += 1;
+        }
+      });
+
+      const pct = names.length ? Math.round((answered / names.length) * 100) : 0;
+      fill.style.width = pct + '%';
+      text.textContent = pct + '% preenchido';
+    }
+
+    function removeDynamicItem(button) {
+      const item = button.closest('.dynamic-item');
+      if (item) {
+        item.remove();
+        updateProgress();
+      }
+    }
+
+    function bathroomTemplate(index) {
+      return `
+        <div class="dynamic-item" data-bathroom-index="${index}">
+          <div class="item-top">
+            <div class="item-title">Banheiro / lavabo ${index}</div>
+            ${index > 1 ? '<button class="small-btn secondary" type="button" data-remove-item>Remover</button>' : ''}
+          </div>
+          <div class="fields">
+            <div class="field"><label>Tipo</label>
+              <select name="banheiro_${index}_tipo">
+                <option value="">Selecione</option>
+                <option>Banheiro social</option>
+                <option>Banheiro da suíte</option>
+                <option>Lavabo</option>
+                <option>Banheiro de serviço</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="field"><label>Vai sofrer intervenção?</label>
+              <select name="banheiro_${index}_intervencao">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+                <option>Parcialmente</option>
+              </select>
+            </div>
+            <div class="field"><label>Vai trocar revestimentos?</label>
+              <select name="banheiro_${index}_revestimentos">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+                <option>Parcialmente</option>
+              </select>
+            </div>
+            <div class="field"><label>Quer nicho no box?</label>
+              <select name="banheiro_${index}_nicho">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+                <option>Não se aplica</option>
+              </select>
+            </div>
+            <div class="field"><label>Tipo de cuba</label><input type="text" name="banheiro_${index}_cuba"></div>
+            <div class="field"><label>Tipo de bancada</label><input type="text" name="banheiro_${index}_bancada"></div>
+            <div class="field"><label>Box</label><input type="text" name="banheiro_${index}_box" placeholder="Incolor, fumê, canelado..."></div>
+            <div class="field"><label>Metais e louças preferidos</label><input type="text" name="banheiro_${index}_metais"></div>
+            <div class="field-full"><label>O que deseja mudar neste banheiro ou lavabo?</label><textarea name="banheiro_${index}_mudancas"></textarea></div>
+            <div class="field-full"><label>Observações adicionais</label><textarea name="banheiro_${index}_obs" placeholder="Ex.: não vai mexer, apenas pintura, trocar espelho, manter bancada atual..."></textarea></div>
+          </div>
+        </div>`;
+    }
+
+    function roomTemplate(index) {
+      return `
+        <div class="dynamic-item" data-room-index="${index}">
+          <div class="item-top">
+            <div class="item-title">Quarto ${index}</div>
+            ${index > 1 ? '<button class="small-btn secondary" type="button" data-remove-item>Remover</button>' : ''}
+          </div>
+          <div class="fields">
+            <div class="field"><label>Quem usa esse quarto?</label><input type="text" name="quarto_${index}_usuario"></div>
+            <div class="field"><label>Tipo de uso</label><input type="text" name="quarto_${index}_uso" placeholder="Suíte, infantil, hóspede, home office..."></div>
+            <div class="field"><label>Vai ter TV? Marca e tamanho</label><input type="text" name="quarto_${index}_tv"></div>
+            <div class="field"><label>Tipo de cama</label><input type="text" name="quarto_${index}_cama"></div>
+            <div class="field"><label>Vai sofrer intervenção?</label>
+              <select name="quarto_${index}_intervencao">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+                <option>Parcialmente</option>
+              </select>
+            </div>
+            <div class="field"><label>Necessidades principais</label><input type="text" name="quarto_${index}_necessidades"></div>
+            <div class="field-full"><label>O que deseja mudar neste quarto?</label><textarea name="quarto_${index}_mudancas"></textarea></div>
+            <div class="field-full"><label>Observações do quarto</label><textarea name="quarto_${index}_obs"></textarea></div>
+          </div>
+        </div>`;
+    }
+
+    function extraSpaceTemplate(index) {
+      return `
+        <div class="dynamic-item" data-extra-index="${index}">
+          <div class="item-top">
+            <div class="item-title">Ambiente extra ${index}</div>
+            ${index > 1 ? '<button class="small-btn secondary" type="button" data-remove-item>Remover</button>' : ''}
+          </div>
+          <div class="fields">
+            <div class="field"><label>Tipo de ambiente</label>
+              <select name="extra_${index}_tipo">
+                <option value="">Selecione</option>
+                <option>Varanda</option>
+                <option>Closet</option>
+                <option>Home office</option>
+                <option>Despensa</option>
+                <option>Rouparia</option>
+                <option>Hall</option>
+                <option>Circulação</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="field"><label>Vai sofrer intervenção?</label>
+              <select name="extra_${index}_intervencao">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+                <option>Parcialmente</option>
+              </select>
+            </div>
+            <div class="field"><label>Função principal desse ambiente</label><input type="text" name="extra_${index}_funcao" placeholder="Ex.: trabalho, relaxar, armazenamento..."></div>
+            <div class="field"><label>Item principal que precisa existir</label><input type="text" name="extra_${index}_item_principal"></div>
+            <div class="field-full"><label>O que deseja mudar nesse ambiente?</label><textarea name="extra_${index}_mudancas"></textarea></div>
+            <div class="field-full"><label>Observações adicionais</label><textarea name="extra_${index}_obs" placeholder="Ex.: varanda gourmet, closet aberto, home office para duas pessoas..."></textarea></div>
+          </div>
+        </div>`;
+    }
+
+    function addBathroom() {
+      bathroomCount += 1;
+      bathroomList.insertAdjacentHTML('beforeend', bathroomTemplate(bathroomCount));
+      updateProgress();
+    }
+
+    function addRoom() {
+      roomCount += 1;
+      roomList.insertAdjacentHTML('beforeend', roomTemplate(roomCount));
+      updateProgress();
+    }
+
+    function addExtraSpace() {
+      extraSpaceCount += 1;
+      extraSpaceList.insertAdjacentHTML('beforeend', extraSpaceTemplate(extraSpaceCount));
+      updateProgress();
+    }
+
+    function downloadAnswers() {
+      const fields = getFields();
+      const data = {};
+      fields.forEach((field) => {
+        if (!field.name) return;
+        if (field.type === 'checkbox') {
+          if (!data[field.name]) data[field.name] = [];
+          if (field.checked) data[field.name].push(field.value);
+        } else if (field.type === 'radio') {
+          if (field.checked) data[field.name] = field.value;
+        } else {
+          data[field.name] = field.value;
+        }
+      });
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'briefing-arq-karolyne-ximenes-respostas.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    addBathroomBtn.addEventListener('click', addBathroom);
+    addRoomBtn.addEventListener('click', addRoom);
+    addExtraSpaceBtn.addEventListener('click', addExtraSpace);
+    downloadBtn.addEventListener('click', downloadAnswers);
+    printBtn.addEventListener('click', () => window.print());
+
+    document.addEventListener('click', (event) => {
+      if (event.target.matches('[data-remove-item]')) {
+        removeDynamicItem(event.target);
+      }
+    });
+
+    form.addEventListener('input', updateProgress);
+    form.addEventListener('change', updateProgress);
+
+    addBathroom();
+    addRoom();
+    addExtraSpace();
+    updateProgress();
+
+    console.assert(typeof addBathroom === 'function', 'addBathroom should be defined');
+    console.assert(typeof addRoom === 'function', 'addRoom should be defined');
+    console.assert(typeof addExtraSpace === 'function', 'addExtraSpace should be defined');
+    console.assert(document.querySelectorAll('#bathroomList .dynamic-item').length === 1, 'One bathroom item should render initially');
+    console.assert(document.querySelectorAll('#roomList .dynamic-item').length === 1, 'One room item should render initially');
+    console.assert(document.querySelectorAll('#extraSpaceList .dynamic-item').length === 1, 'One extra space item should render initially');
+  </script>
+</body>
+</html>
